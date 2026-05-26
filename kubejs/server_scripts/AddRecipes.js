@@ -1,17 +1,17 @@
 ServerEvents.recipes(event => {
-  
   let energisingRecipesMap = new Map();
-  mapType(event,recipeType['energising'],energisingRecipesMap);
+  mapType(event,global.recipeTypes['energising'],energisingRecipesMap);
   let chargingRecipesMap = new Map();
-  mapType(event,recipeType['charging'],chargingRecipesMap);
+  mapType(event,global.recipeTypes['charging'],chargingRecipesMap);
 
 
-  event.forEachRecipe({ type: recipeType['charging'] }, recipe => {
+  event.forEachRecipe({ type: global.recipeTypes['charging'] }, recipe => {
     chargingToEnergising(event, recipe, energisingRecipesMap);
   });
 
-    event.forEachRecipe({ type: recipeType['energising'] }, recipe => {
+    event.forEachRecipe({ type: global.recipeTypes['energising'] }, recipe => {
     energisingToCharging(event, recipe, chargingRecipesMap);
   });
+  
 
 });
